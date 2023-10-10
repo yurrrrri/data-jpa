@@ -152,4 +152,15 @@ class MemberRepositoryTest {
 
         em.flush();
     }
+
+    @Test
+    void lockTest() {
+        // given
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        em.flush();
+        em.clear();
+
+        // when
+        List<Member> result = memberRepository.findLockByUsername("member1");
+    }
 }
